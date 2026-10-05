@@ -1,44 +1,24 @@
 package restaurant.infrastructure.repository;
 
+import restaurant.app.SampleData;
+import restaurant.domain.entity.Category;
 import restaurant.domain.entity.Order;
 import restaurant.domain.enums.OrderStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderRepository {
-    List<Order> list = new ArrayList<>();
-
-    public void addOrder(Order order)
+public class OrderRepository extends Repository<Order, Integer>{
+    public OrderRepository(List<Category> list)
     {
-        list.add(order);
+        super(list);
     }
-    // find order by Id
-    public Order findById(String id)
+    public Order findById(int id)
     {
-        for (var order : list)
-        {
-            if (order.getOrderId().equalsIgnoreCase(id))
-            {
-                return order;
-            }
-        }
-        return null;
+        return findById(id, Order::getOrderId);
     }
-    // return copy list order
-    public List<Order> findAll()
+    public List<Order> findByStatus(OrderStatus status)
     {
-        return new ArrayList<>(list);
+        return findBy(o->o.getStatus() == status);
     }
-    // find status of the order
-    public OrderStatus findByStatus(OrderStatus status)
-    {
-        for (var order : list) {
-            if (order.getStatus() == status) {
-                return order.getStatus();
-            }
-        }
-        return null;
-    }
-    // update order if guest want to change dish
 }

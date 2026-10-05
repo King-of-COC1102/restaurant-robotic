@@ -1,11 +1,10 @@
 package restaurant.domain.enums;
 
 public enum OrderStatus {
-    RECEIVED,
+    PENDING,
     PREPARING,
-    READY,
+    COMPLETED,
     SERVING,
     SERVED,
-    PAID,
     CANCELLED
 }

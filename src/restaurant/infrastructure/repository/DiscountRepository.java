@@ -1,23 +1,24 @@
 package restaurant.infrastructure.repository;
 
 import restaurant.app.SampleData;
+import restaurant.domain.entity.Category;
 import restaurant.domain.entity.Discount;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiscountRepository extends Repository<Discount, String>
+public class DiscountRepository extends Repository<Discount, Integer>
 {
-    DiscountRepository()
+    public DiscountRepository(List<Category> list)
     {
-        super(SampleData.DISCOUNTS);
+        super(list);
     }
 
     // tìm discount thông qua id của nó
-    public Discount findById(String id)
+    public Discount findById(int id)
     {
-        return findById(id, d -> d.getId());
+        return findById(id, Discount::getDiscountId);
     }
 
     // trả ra list các discount còn hoạt động (còn hạn và đang được setActive = true)

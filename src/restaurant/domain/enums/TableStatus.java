@@ -2,5 +2,6 @@ package restaurant.domain.enums;
 
 public enum TableStatus {
     EMPTY,
-    OCCUPIED
+    IN_USE,
+    RESERVED
 }

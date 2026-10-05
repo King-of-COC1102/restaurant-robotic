@@ -5,10 +5,10 @@ import restaurant.domain.entity.Discount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
-// this repo has method: add, findById, findAll, findBy
-public abstract class Repository <T,D>{
-    List<T> list;
-    Repository(List<T> list)
+// this repo has method: add, findById*, findAll, findBy*
+public abstract class Repository <T,DT>{
+    protected final List<T> list;
+    public Repository(List<T> list)
     {
         this.list = list;
     }
@@ -18,7 +18,7 @@ public abstract class Repository <T,D>{
         list.add(item);
     }
     // tìm item thông qua id của nó
-    public T findById(D id, Function<T,D> getId)
+    public T findById(DT id, Function<T,DT> getId)
     {
         for (var item : list) {
             if (getId.apply(item).equals(id)) {
@@ -34,14 +34,6 @@ public abstract class Repository <T,D>{
     // trả ra list các item thỏa mãn condition
     public List<T> findBy(Predicate<T> condition)
     {
-        List<T> result = new ArrayList<>();
-        for (var item : list)
-        {
-            if(condition.test(item))
-            {
-                result.add(item);
-            }
-        }
-        return result;
+        return list.stream().filter(condition).toList();
     }
 }

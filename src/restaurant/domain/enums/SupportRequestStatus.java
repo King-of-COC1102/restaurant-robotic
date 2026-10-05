@@ -1,4 +1,7 @@
 package restaurant.domain.enums;
 
-public class SupportRequestStatus {
+public enum SupportRequestStatus {
+    UNHANDLED,
+    HANDLING,
+    DONE
 }

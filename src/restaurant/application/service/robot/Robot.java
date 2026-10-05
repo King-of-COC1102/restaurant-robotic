@@ -1,4 +1,4 @@
-package restaurant.infrastructure.robot;
+package restaurant.application.service.robot;
 
 import restaurant.domain.enums.RoborType;
 import restaurant.domain.enums.RobotStatus;
