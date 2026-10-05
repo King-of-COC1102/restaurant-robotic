@@ -2,16 +2,21 @@ package restaurant.domain.entity;
 
 public class OrderItem
 {
-    String orderItemId;
-    String orderId;
-    String dishId;
+    int orderItemId;
+    int orderId;
+    int dishId;
     Double quantity;
     double unitPriceAtOrder;
     String note;
     boolean isCancelled;   // thay cho Status
 
-    OrderItem(String OrderItemId, String OrderId, String DishId, Double Quantity, String Note, boolean IsCancelled)
-    {
+    public OrderItem(int orderItemId,
+                     int orderId,
+                     int dishId,
+                     Double quantity,
+                     double unitPriceAtOrder,
+                     String note,
+                     boolean isCancelled) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.dishId = dishId;
@@ -19,18 +24,17 @@ public class OrderItem
         this.unitPriceAtOrder = unitPriceAtOrder;
         this.note = note;
         this.isCancelled = isCancelled;
-
     }
 
-    public String getOrderItemId() {
+    public int getOrderItemId() {
         return orderItemId;
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public String getDishId() {
+    public int getDishId() {
         return dishId;
     }
 

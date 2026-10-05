@@ -3,12 +3,17 @@ package restaurant.domain.entity;
 import restaurant.domain.enums.TableStatus;
 
 public class Table {
-    String id;
+    int id;
     int capacity;
-    TableStatus tableStatus;
+    TableStatus status;
 
-    public String getId()
-    {
+    public Table(int id, int capacity, TableStatus status) {
+        this.id = id;
+        this.capacity = capacity;
+        this.status = status;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -19,11 +24,10 @@ public class Table {
         this.capacity = capacity;
     }
 
-    public TableStatus getTableStatus()
-    {
-        return tableStatus;
+    public TableStatus getStatus() {
+        return status;
     }
-    public void setTableStatus(TableStatus tableStatus) {
-        this.tableStatus = tableStatus;
+    public void setStatus(TableStatus status) {
+        this.status = status;
     }
 }

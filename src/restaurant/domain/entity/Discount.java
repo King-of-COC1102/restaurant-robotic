@@ -4,71 +4,70 @@ import restaurant.domain.enums.DiscountType;
 
 public class Discount
 {
-    String id;
+    int discountId;
+    String code;
     DiscountType type;
-    double price;
+    double value;
     LocalDateTime validFrom;
     LocalDateTime validTo;
     boolean isActive;
 
-    public Discount(DiscountType type,
-                    double price,
-                    String id,
+    public Discount(int discountId,
+                    String code,
+                    DiscountType type,
+                    double value,
                     LocalDateTime validFrom,
                     LocalDateTime validTo,
-                    boolean isActive
-    )
-    {
+                    boolean isActive) {
+        this.discountId = discountId;
+        this.code = code;
         this.type = type;
-        this.price = price;
-        this.id = id;
+        this.value = value;
         this.validFrom = validFrom;
         this.validTo = validTo;
         this.isActive = isActive;
-
     }
 
-    // Chỉ có getDiscountType vì là primary key
-    public DiscountType getDiscountType()
-    {
+    public int getDiscountId() {
+        return discountId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public DiscountType getType() {
         return type;
     }
-
-    public double getPrice()
-    {
-        return price;
+    public void setType(DiscountType type) {
+        this.type = type;
     }
 
-    // Chỉ có getCode (code là primary key)
-    public String getId() {
-        return id;
+    public double getValue() {
+        return value;
+    }
+    public void setValue(double value) {
+        this.value = value;
     }
 
-    public LocalDateTime getValidFrom()
-    {
+    public LocalDateTime getValidFrom() {
         return validFrom;
     }
-    public void setValidFrom(LocalDateTime validFrom)
-    {
+    public void setValidFrom(LocalDateTime validFrom) {
         this.validFrom = validFrom;
     }
 
-    public LocalDateTime getValidTo()
-    {
+    public LocalDateTime getValidTo() {
         return validTo;
     }
-    public void setValidTo(LocalDateTime validTo)
-    {
+    public void setValidTo(LocalDateTime validTo) {
         this.validTo = validTo;
     }
 
-    public boolean isActive()
-    {
+    public boolean isActive() {
         return isActive;
     }
-    public void setIsActive(boolean isActive)
-    {
-        this.isActive = isActive;
+    public void setActive(boolean active) {
+        isActive = active;
     }
-
 }

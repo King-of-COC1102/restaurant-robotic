@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
-    String id;
+    int id;
     String name;
     String description;
 
-    Category(String id, String name, String description)
+    Category(int id, String name, String description)
     {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
-    }
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {

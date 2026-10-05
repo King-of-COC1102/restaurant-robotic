@@ -2,32 +2,39 @@ package restaurant.domain.entity;
 
 public class Dish
 {
-    String id;
+    int dishId;
+    int categoryid;
     String name;
     double price;
     int AvailableQuantity;
+    String description;
     boolean isActive;
-    String categoryId ;
 
-    Dish(String id,
+    Dish(int dishId,
+         int categoryid,
          String name,
          double price,
          int AvailableQuantity,
-         boolean isActive,
-         String categoryId
+         String description,
+         boolean isActive
     )
     {
-        this.id = id;
+        this.dishId = dishId;
+        this.categoryid = categoryid;
         this.name = name;
         this.price = price;
         this.AvailableQuantity = AvailableQuantity;
+        this.description = description;
         this.isActive = isActive;
-        this.categoryId = categoryId;
     }
     // GET METHOD
 
-    public String getId() {
-        return id;
+    public int getId() {
+        return dishId;
+    }
+
+    public int getCategoryid() {
+        return categoryid;
     }
 
     public String getName() {
@@ -37,13 +44,6 @@ public class Dish
         this.name = name;
     }
 
-    public int getAvailableQuantity() {
-        return AvailableQuantity;
-    }
-    public void setAvailableQuantity(int availableQuantity) {
-        AvailableQuantity = availableQuantity;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -51,12 +51,18 @@ public class Dish
         this.price = price;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public int getAvailableQuantity() {
+        return AvailableQuantity;
+    }
+    public void setAvailableQuantity(int availableQuantity) {
+        AvailableQuantity = availableQuantity;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isActive() {

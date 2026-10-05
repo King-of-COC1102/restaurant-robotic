@@ -5,7 +5,7 @@ import restaurant.domain.entity.Discount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
-
+// this repo has method: add, findById, findAll, findBy
 public abstract class Repository <T,D>{
     List<T> list;
     Repository(List<T> list)

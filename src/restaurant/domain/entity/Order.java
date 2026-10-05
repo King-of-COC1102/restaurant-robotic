@@ -6,25 +6,32 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
-    String orderId;
-    String tableId;
+    int orderId;
     List<OrderItem> items;
+    int tableId;
+    int customerId;
     OrderStatus status;
-    LocalDateTime paymentTime;
-    Order(String orderId, String tableId, List<OrderItem> items, OrderStatus orderStatus, LocalDateTime paymentTime)
+    LocalDateTime createAt;
+    Order(int orderId,
+          int tableId,
+          List<OrderItem> items,
+          int customerId,
+          OrderStatus orderStatus,
+          LocalDateTime paymentTime)
     {
         this.orderId = orderId;
         this.tableId = tableId;
         this.items = items;
+        this.customerId = customerId;
         this.status = orderStatus;
-        this.paymentTime = paymentTime;
+        this.createAt = paymentTime;
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public String getTableId() {
+    public int getTableId() {
         return tableId;
     }
 
@@ -43,10 +50,10 @@ public class Order {
     }
 
     public LocalDateTime getPaymentTime() {
-        return paymentTime;
+        return createAt;
     }
     public void setPaymentTime(LocalDateTime paymentTime) {
-        this.paymentTime = paymentTime;
+        this.createAt = paymentTime;
     }
 }
 

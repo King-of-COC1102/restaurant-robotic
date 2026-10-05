@@ -3,38 +3,64 @@ package restaurant.domain.entity;
 import restaurant.domain.enums.PaymentMethod;
 import restaurant.domain.enums.PaymentStatus;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Payment {
-    String id;
-    String orderId;
-    double amount;
+    int paymentId;
+    int orderId;
+    BigDecimal totalAmount;
+    BigDecimal discountAmount;
+    BigDecimal finalAmount;
     PaymentMethod method;
     LocalDateTime paidAt;
     PaymentStatus status;
 
-    public Payment(String id, String orderId, double amount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
-        this.id = id;
+    public Payment(int paymentId,
+                   int orderId,
+                   BigDecimal totalAmount,
+                   BigDecimal discountAmount,
+                   BigDecimal finalAmount,
+                   PaymentMethod method,
+                   LocalDateTime paidAt,
+                   PaymentStatus status) {
+        this.paymentId = paymentId;
         this.orderId = orderId;
-        this.amount = amount;
+        this.totalAmount = totalAmount;
+        this.discountAmount = discountAmount;
+        this.finalAmount = finalAmount;
         this.method = method;
         this.paidAt = paidAt;
         this.status = status;
     }
 
-    public String getId() {
-        return id;
+    public int getPaymentId() {
+        return paymentId;
     }
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public double getAmount() {
-        return amount;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+    public void setDiscountAmount(BigDecimal discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public BigDecimal getFinalAmount() {
+        return finalAmount;
+    }
+    public void setFinalAmount(BigDecimal finalAmount) {
+        this.finalAmount = finalAmount;
     }
 
     public PaymentMethod getMethod() {
