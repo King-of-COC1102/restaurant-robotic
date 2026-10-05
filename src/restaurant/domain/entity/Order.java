@@ -9,20 +9,17 @@ public class Order {
     String orderId;
     String tableId;
     List<OrderItem> items;
-    OrderStatus orderStatus;
+    OrderStatus status;
     LocalDateTime paymentTime;
     Order(String orderId, String tableId, List<OrderItem> items, OrderStatus orderStatus, LocalDateTime paymentTime)
     {
         this.orderId = orderId;
         this.tableId = tableId;
         this.items = items;
-        this.orderStatus = orderStatus;
+        this.status = orderStatus;
         this.paymentTime = paymentTime;
     }
 
-<<<<<<< Updated upstream
-hello
-=======
     public String getOrderId() {
         return orderId;
     }
@@ -38,11 +35,11 @@ hello
         this.items = items;
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
+    public OrderStatus getStatus() {
+        return status;
     }
     public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+        this.status = orderStatus;
     }
 
     public LocalDateTime getPaymentTime() {
@@ -52,4 +49,4 @@ hello
         this.paymentTime = paymentTime;
     }
 }
->>>>>>> Stashed changes
+

@@ -1,4 +1,4 @@
 package restaurant.infrastructure.repository;
 
-public class MenuRepository {
+public class PaymentRepository {
 }

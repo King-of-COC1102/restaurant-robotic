@@ -4,24 +4,24 @@ import restaurant.domain.enums.DiscountType;
 
 public class Discount
 {
-    DiscountType discountType;
+    String id;
+    DiscountType type;
     double price;
-    String code;
     LocalDateTime validFrom;
     LocalDateTime validTo;
     boolean isActive;
 
-    public Discount(DiscountType discountType,
+    public Discount(DiscountType type,
                     double price,
-                    String code,
+                    String id,
                     LocalDateTime validFrom,
                     LocalDateTime validTo,
                     boolean isActive
     )
     {
-        this.discountType = discountType;
+        this.type = type;
         this.price = price;
-        this.code = code;
+        this.id = id;
         this.validFrom = validFrom;
         this.validTo = validTo;
         this.isActive = isActive;
@@ -31,21 +31,17 @@ public class Discount
     // Chỉ có getDiscountType vì là primary key
     public DiscountType getDiscountType()
     {
-        return discountType;
+        return type;
     }
 
     public double getPrice()
     {
         return price;
     }
-    public void setPrice(double price)
-    {
-        this.price = price;
-    }
 
     // Chỉ có getCode (code là primary key)
-    public String getCode() {
-        return code;
+    public String getId() {
+        return id;
     }
 
     public LocalDateTime getValidFrom()
