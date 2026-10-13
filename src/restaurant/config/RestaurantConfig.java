@@ -10,5 +10,5 @@ public class RestaurantConfig {
     PaymentRequestdEvent paymentEvent = new PaymentRequestdEvent();
     SupportRequestedEvent supportEvent = new SupportRequestedEvent();
     NoRobotAvailableEvent noRobotEvent = new NoRobotAvailableEvent();
-    Robot.eventList.;
+
 }
