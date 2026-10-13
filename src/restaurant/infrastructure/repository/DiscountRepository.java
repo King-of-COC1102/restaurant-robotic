@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DiscountRepository extends Repository<Discount, Integer>
 {
-    public DiscountRepository(List<Category> list)
+    public DiscountRepository(List<Discount> list)
     {
         super(list);
     }
@@ -19,6 +19,13 @@ public class DiscountRepository extends Repository<Discount, Integer>
     public Discount findById(int id)
     {
         return findById(id, Discount::getDiscountId);
+    }
+
+    // mã có dùng được tại thời điểm này không
+    public boolean checkValid(Discount d, LocalDateTime now) {
+        return d != null && d.isActive()
+                && !now.isBefore(d.getValidFrom())
+                && !now.isAfter(d.getValidTo());
     }
 
     // trả ra list các discount còn hoạt động (còn hạn và đang được setActive = true)

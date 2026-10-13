@@ -1,7 +1,9 @@
-package restaurant.application.service.robot;
+package restaurant.domain.entity;
 
-import restaurant.domain.enums.RoborType;
-import restaurant.domain.enums.RobotStatus;
+import restaurant.domain.enums.*;
+import restaurant.infrastructure.event.*;
+
+import java.util.List;
 
 public class Robot {
     int robotId;
@@ -9,6 +11,8 @@ public class Robot {
     RoborType type;
     RobotStatus status;
     int batteryLevel;
+    public static List<Event> eventList;
+
 
     public Robot(int robotId, String name, RoborType type, RobotStatus status, int batteryLevel) {
         this.robotId = robotId;

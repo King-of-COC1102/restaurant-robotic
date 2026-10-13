@@ -1,10 +1,11 @@
-package restaurant.application.service.robot;
+package restaurant.application.robot;
 
+import restaurant.domain.entity.Robot;
 import restaurant.domain.enums.RoborType;
 import restaurant.domain.enums.RobotStatus;
 
-public class SupportRobot extends Robot{
-    SupportRobot(int robotId,
+public class ServingRobot extends Robot {
+    ServingRobot(int robotId,
                  String name,
                  RoborType type,
                  RobotStatus status,

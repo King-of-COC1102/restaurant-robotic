@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class PaymentRepository extends Repository<Payment, Integer>{
-    public PaymentRepository(List<Category> list)
+    public PaymentRepository(List<Payment> list)
     {
         super(list);
     }

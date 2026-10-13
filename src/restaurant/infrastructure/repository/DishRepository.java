@@ -1,13 +1,13 @@
 package restaurant.infrastructure.repository;
 
-import restaurant.app.SampleData;
-import restaurant.domain.entity.Category;
-import restaurant.domain.entity.Dish;
+
+import restaurant.domain.entity.*;
+
 
 import java.util.List;
 
 public class DishRepository extends Repository<Dish, Integer>{
-    public DishRepository(List<Category> list)
+    public DishRepository(List<Dish> list)
     {
         super(list);
     }

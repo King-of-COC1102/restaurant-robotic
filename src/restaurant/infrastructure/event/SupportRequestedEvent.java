@@ -1,4 +1,9 @@
 package restaurant.infrastructure.event;
 
-public class SupportRequestedEvent {
+public class SupportRequestedEvent implements Event{
+    @Override
+    public void fireEvent()
+    {
+
+    }
 }

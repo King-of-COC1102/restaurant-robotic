@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepository extends Repository<Order, Integer>{
-    public OrderRepository(List<Category> list)
+    public OrderRepository(List<Order> list)
     {
         super(list);
     }

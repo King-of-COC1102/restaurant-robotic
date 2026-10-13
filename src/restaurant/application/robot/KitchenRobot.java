@@ -1,9 +1,10 @@
-package restaurant.application.service.robot;
+package restaurant.application.robot;
 
+import restaurant.domain.entity.Robot;
 import restaurant.domain.enums.RoborType;
 import restaurant.domain.enums.RobotStatus;
 
-public class KitchenRobot extends Robot{
+public class KitchenRobot extends Robot {
     KitchenRobot(int robotId,
     String name,
     RoborType type,
@@ -11,5 +12,6 @@ public class KitchenRobot extends Robot{
     int batteryLevel)
     {
         super(robotId, name, type, status, batteryLevel);
+
     }
 }

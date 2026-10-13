@@ -6,7 +6,7 @@ import restaurant.domain.entity.*;
 import java.util.List;
 
 public class TableRepository extends Repository<Table, Integer>{
-    public TableRepository(List<Category> list) {
+    public TableRepository(List<Table> list) {
         super(list);
     }
     public Table findById(int id) {
