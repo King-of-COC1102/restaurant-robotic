@@ -1,8 +1,8 @@
 package restaurant.domain.enums;
 
 public enum PaymentStatus {
-    PENDING,
+    PENDING, //Đang xử lí
     SUCCESS,
     FAILED,
-    REFUNDED
+    REFUNDED //Đã hoàn tiền
 }

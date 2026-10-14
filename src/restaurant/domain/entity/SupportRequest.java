@@ -5,12 +5,12 @@ import restaurant.domain.enums.SupportRequestStatus;
 import java.time.LocalDateTime;
 
 public class SupportRequest {
-    int requestId;
-    int tableId;
-    int robotId;
-    String message;
-    LocalDateTime createdAt;
-    SupportRequestStatus status;
+    private int requestId;
+    private int tableId;
+    private int robotId;
+    private String message;
+    private LocalDateTime createdAt;
+    private SupportRequestStatus status;
 
     public SupportRequest(int requestId, int tableId, int robotId, String message, LocalDateTime createdAt, SupportRequestStatus status) {
         this.requestId = requestId;

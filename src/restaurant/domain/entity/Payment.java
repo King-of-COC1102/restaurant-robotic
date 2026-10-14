@@ -7,23 +7,16 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Payment {
-    int paymentId;
-    int orderId;
-    BigDecimal totalAmount;
-    BigDecimal discountAmount;
-    BigDecimal finalAmount;
-    PaymentMethod method;
-    LocalDateTime paidAt;
-    PaymentStatus status;
+    private int paymentId;
+    private int orderId;
+    private BigDecimal totalAmount;
+    private BigDecimal discountAmount;
+    private BigDecimal finalAmount;
+    private PaymentMethod method;
+    private LocalDateTime paidAt;
+    private PaymentStatus status;
 
-    public Payment(int paymentId,
-                   int orderId,
-                   BigDecimal totalAmount,
-                   BigDecimal discountAmount,
-                   BigDecimal finalAmount,
-                   PaymentMethod method,
-                   LocalDateTime paidAt,
-                   PaymentStatus status) {
+    public Payment(int paymentId, int orderId, BigDecimal totalAmount, BigDecimal discountAmount, BigDecimal finalAmount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.totalAmount = totalAmount;

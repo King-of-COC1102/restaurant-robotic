@@ -5,11 +5,11 @@ import restaurant.domain.enums.*;
 import java.time.LocalDateTime;
 
 public class Customer {
-    int customerId;
-    String name;
-    String phoneNumber;
-    CustomerType type;
-    LocalDateTime ArriveAt;
+    private int customerId;
+    private String name;
+    private String phoneNumber;
+    private CustomerType type;
+    private LocalDateTime ArriveAt;
 
     public Customer(int customerId, String name, String phoneNumber, CustomerType type, LocalDateTime arriveAt) {
         this.customerId = customerId;

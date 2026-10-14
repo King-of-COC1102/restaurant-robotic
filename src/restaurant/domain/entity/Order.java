@@ -6,18 +6,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
-    int orderId;
-    List<OrderItem> items;
-    int tableId;
-    int customerId;
-    OrderStatus status;
-    LocalDateTime createAt;
-    Order(int orderId,
-          int tableId,
-          List<OrderItem> items,
-          int customerId,
-          OrderStatus orderStatus,
-          LocalDateTime paymentTime)
+    private int orderId;
+    private List<OrderItem> items;
+    private int tableId;
+    private int customerId;
+    private OrderStatus status;
+    private LocalDateTime createAt;
+    Order(int orderId, int tableId, List<OrderItem> items, int customerId, OrderStatus orderStatus, LocalDateTime paymentTime)
     {
         this.orderId = orderId;
         this.tableId = tableId;

@@ -4,21 +4,15 @@ import restaurant.domain.enums.DiscountType;
 
 public class Discount
 {
-    int discountId;
-    String code;
-    DiscountType type;
-    double value;
-    LocalDateTime validFrom;
-    LocalDateTime validTo;
-    boolean isActive;
+    private int discountId;
+    private String code;
+    private DiscountType type;
+    private double value;
+    private LocalDateTime validFrom;
+    private LocalDateTime validTo;
+    private boolean isActive;
 
-    public Discount(int discountId,
-                    String code,
-                    DiscountType type,
-                    double value,
-                    LocalDateTime validFrom,
-                    LocalDateTime validTo,
-                    boolean isActive) {
+    public Discount(int discountId, String code, DiscountType type, double value, LocalDateTime validFrom, LocalDateTime validTo, boolean isActive) {
         this.discountId = discountId;
         this.code = code;
         this.type = type;

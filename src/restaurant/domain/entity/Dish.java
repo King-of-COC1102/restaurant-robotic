@@ -2,13 +2,13 @@ package restaurant.domain.entity;
 
 public class Dish
 {
-    int dishId;
-    int categoryid;
-    String name;
-    double price;
-    int AvailableQuantity;
-    String description;
-    boolean isActive;
+    private int dishId;
+    private int categoryid;
+    private String name;
+    private double price;
+    private int AvailableQuantity;
+    private String description;
+    private boolean isActive;
 
     Dish(int dishId,
          int categoryid,

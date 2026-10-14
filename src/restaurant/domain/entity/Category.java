@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
-    int id;
-    String name;
-    String description;
+    private int id;
+    private String name;
+    private String description;
 
     public Category(int id, String name, String description)
     {

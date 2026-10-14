@@ -15,4 +15,5 @@ public class DishRepository extends Repository<Dish, Integer>{
     {
         return findById(id, Dish::getId);
     }
+
 }
