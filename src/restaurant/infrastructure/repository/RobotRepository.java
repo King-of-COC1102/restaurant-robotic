@@ -2,17 +2,17 @@ package restaurant.infrastructure.repository;
 
 import restaurant.domain.entity.Robot;
 import restaurant.application.robot.*;
-import restaurant.domain.enums.RoborType;
-import restaurant.domain.enums.RobotStatus;
+import restaurant.domain.enums.*;
+
 import java.util.ArrayList;
 import java.util.List;
-public class RobotRepository extends Repository<Robot, String>{
+public class RobotRepository extends Repository<Robot, Integer>{
 
     public RobotRepository(List<Robot> list) {
         super(list);
     }
     //Đếm số lượng Robot của 1 loại cụ thể
-    public int countRobotType(RoborType type) {
+    public int countRobotType(RobotType type) {
         int count=0;
         for (Robot robot: list) {
             if(robot.getType()==type){
@@ -22,7 +22,7 @@ public class RobotRepository extends Repository<Robot, String>{
         return count;
     }
     //Đếm xem có bao nhiêu con Robot rảnh(AVAILABLE) của 1 loại
-    public int countAvailableRobotType(RoborType type) {
+    public int countAvailableRobotType(RobotType type) {
         int count=0;
         for (Robot robot: list) {
             if (robot.getType()==type && robot.getStatus()==RobotStatus.AVAILABLE) {
@@ -31,13 +31,9 @@ public class RobotRepository extends Repository<Robot, String>{
         }
         return count;
     }
-    public List<Robot> findAvailableRobot (RoborType type,RobotStatus status) {
-        List<Robot> result = new ArrayList<>();
-        for (Robot robot:list) {
-            if(robot.getType()==type && robot.getStatus()==status ) {
-                result.add(robot);
-            }
-        }
-        return result;
+
+    public List<Robot> findAvailableRobot (RobotType type, RobotStatus status) {
+        // tìm robot có trạng thái available
+        return findBy(r -> r.getType() == type && r.getStatus() == status);
     }
 }

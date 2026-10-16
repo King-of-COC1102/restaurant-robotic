@@ -18,6 +18,7 @@ public class CustomerArrivedEvent implements Event{
     public Customer getCustomer() {
         return customer;
     }
+
     @Override
     public void  fireEvent() {
         System.out.println("Đang xử lí tiếp đón khách "+customer.getName());
@@ -35,7 +36,7 @@ public class CustomerArrivedEvent implements Event{
             }
         }
         else {
-            System.out.println("->Lỗi: Chưa có thông tin của DS bàn");
+            System.out.println(" Lỗi: Sự kiện chưa được cung cấp đủ dữ liệu!");
         }
     }
 }

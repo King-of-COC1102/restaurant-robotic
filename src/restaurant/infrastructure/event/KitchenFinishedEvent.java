@@ -1,9 +1,9 @@
 package restaurant.infrastructure.event;
 import restaurant.domain.entity.Order;
 import restaurant.domain.entity.Robot;
-import restaurant.domain.enums.OrderStatus;
-import restaurant.domain.enums.RobotStatus;
-import restaurant.domain.enums.RoborType;
+import restaurant.domain.enums.*;
+
+
 
 import java.util.List;
 import restaurant.infrastructure.repository.RobotRepository;
@@ -21,14 +21,14 @@ public class KitchenFinishedEvent implements Event{
     @Override
     public void fireEvent()
     {
-        System.out.println("-> Đơn hàng của bàn ID ["+order.getTableId()+"] đã được chuyển xuống bếp");
         if(robotRepository!=null && order!=null) {
-            List<Robot> kitchenRobots=robotRepository.findAvailableRobot(RoborType.KITCHEN,RobotStatus.AVAILABLE);
-            if(kitchenRobots.isEmpty()) { //---> Việc chọn con rãnh sẽ THÔNG QUA SAMPLE DATA đưa ra trạng thái của từng con
+            System.out.println("-> Đơn hàng của bàn ID ["+order.getTableId()+"] đã được chuyển xuống bếp");
+            List<Robot> kitchenRobots=robotRepository.findAvailableRobot(RobotType.KITCHEN,RobotStatus.AVAILABLE);
+            if(kitchenRobots.isEmpty()) { //---> Việc chọn con rảnh sẽ THÔNG QUA SAMPLE DATA đưa ra trạng thái của từng con
                 System.out.println("->Nhà bếp đang quá tải! Robot nấu ăn đang bận nấu các bàn khác. Mong quý khách thông cảm!");
             }
             else {
-                Robot kitchenRobot=kitchenRobots.get(0);
+                Robot kitchenRobot = kitchenRobots.get(0);
                 System.out.println("Robot ["+kitchenRobot.getRobotId()+"] "+kitchenRobot.getName()+" đang nấu ăn cho bạn");
                 kitchenRobot.setStatus(RobotStatus.BUSY);
                 order.setOrderStatus(OrderStatus.PREPARING);
@@ -36,12 +36,12 @@ public class KitchenFinishedEvent implements Event{
                 System.out.println("... Đang nấu các món ăn cho khách ...");
 
                 // 2. Nấu xong: Cập nhật trạng thái đơn hàng và giải phóng KitchenRobot
-                order.setOrderStatus(OrderStatus.READY_TOBRING);
+                order.setOrderStatus(OrderStatus.READY_TO_BRING);
                 kitchenRobot.setStatus(RobotStatus.AVAILABLE);
 
                 System.out.println("=> KitchenRobot đã nấu xong! Chuyển giao món ăn cho ServingRobot để mang ra bàn.");
                 //ROBOT SERVING đem đồ ăn lên bàn
-                List<Robot> servingRobots = robotRepository.findAvailableRobot(RoborType.SERVING, RobotStatus.AVAILABLE);
+                List<Robot> servingRobots = robotRepository.findAvailableRobot(RobotType.SERVING, RobotStatus.AVAILABLE);
 
                 if (servingRobots.isEmpty()) {
                     System.out.println("-> Hiện tại tất cả ServingRobot đang bận bưng bê bàn khác. Đợi một lát sẽ có robot phục vụ!");
@@ -61,7 +61,7 @@ public class KitchenFinishedEvent implements Event{
             }
         }
         else {
-            System.out.println("->Lỗi: RobotRepository hoặc order trống");
+            System.out.println(" Lỗi: Sự kiện chưa được cung cấp đủ dữ liệu!");
         }
     }
 }

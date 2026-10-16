@@ -1,10 +1,7 @@
 package restaurant.infrastructure.event;
 
-import restaurant.domain.entity.SupportRequest;
-import restaurant.domain.entity.Robot;
-import restaurant.domain.enums.RobotStatus;
-import restaurant.domain.enums.RoborType;
-import restaurant.domain.enums.SupportRequestStatus;
+import restaurant.domain.entity.*;
+import restaurant.domain.enums.*;
 import restaurant.infrastructure.repository.RobotRepository;
 
 import java.util.List;
@@ -24,18 +21,18 @@ public class SupportRequestedEvent implements Event {
 
     @Override
     public void fireEvent() {
-        System.out.println("-> [YÊU CẦU HỖ TRỢ] Bàn ID [" + supportRequest.getTableId() + "] đang cần giúp đỡ!");
 
         if (supportRequest != null && robotRepository != null) {
-            // Cập nhật trạng thái yêu cầu
-            supportRequest.setStatus(SupportRequestStatus.HANDLING); // Đang chờ xử lý
+            System.out.println("-> [YÊU CẦU HỖ TRỢ] Bàn ID [" + supportRequest.getTableId() + "] đang cần giúp đỡ!");
 
             // Tìm SupportRobot đang rảnh
-            List<Robot> supportRobots = robotRepository.findAvailableRobot(RoborType.SUPPORT, RobotStatus.AVAILABLE);
+            List<Robot> supportRobots = robotRepository.findAvailableRobot(RobotType.SUPPORT, RobotStatus.AVAILABLE);
 
             if (supportRobots.isEmpty()) {
                 System.out.println("-> Hiện tại tất cả SupportRobot đang bận xử lý các yêu cầu khác. Vui lòng đợi trong giây lát!");
             } else {
+                // Cập nhật trạng thái yêu cầu
+                supportRequest.setStatus(SupportRequestStatus.HANDLING); // Đang chờ xử lý
                 Robot supportRobot = supportRobots.get(0);
                 System.out.println("-> SupportRobot [" + supportRobot.getRobotId() + "] " + supportRobot.getName() + " đang di chuyển đến bàn ID: " + supportRequest.getTableId());
 
@@ -46,13 +43,13 @@ public class SupportRequestedEvent implements Event {
                 System.out.println("=> SupportRobot đã đến nơi và hỗ trợ khách hàng thành công!");
 
                 // Cập nhật trạng thái yêu cầu đã hoàn thành
-                supportRequest.setStatus(SupportRequestStatus.HANDLING);
+                supportRequest.setStatus(SupportRequestStatus.DONE);
 
                 // Trả robot về trạng thái rảnh
                 supportRobot.setStatus(RobotStatus.AVAILABLE);
             }
         } else {
-            System.out.println("-> Lỗi: SupportRequest hoặc RobotRepository trống!");
+            System.out.println(" Lỗi: Sự kiện chưa được cung cấp đủ dữ liệu!");
         }
     }
 }

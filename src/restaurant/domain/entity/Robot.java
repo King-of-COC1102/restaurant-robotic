@@ -6,16 +6,16 @@ import restaurant.infrastructure.event.*;
 import java.util.List;
 
 public class Robot {
-    private int robotId;
-    private String name;
-    private RoborType type;
-    private RobotStatus status;
-    private int batteryLevel;
-    private int quantity;
-    public static List<Event> eventList;
+    protected int robotId;
+    protected String name;
+    protected RobotType type;
+    protected RobotStatus status;
+    protected int batteryLevel;
+    protected int quantity;
+    protected static List<Event> eventList;
 
 
-    public Robot(int robotId, String name, RoborType type, RobotStatus status, int batteryLevel,int quantity) {
+    public Robot(int robotId, String name, RobotType type, RobotStatus status, int batteryLevel,int quantity) {
         this.robotId = robotId;
         this.name = name;
         this.type = type;
@@ -35,10 +35,10 @@ public class Robot {
         this.name = name;
     }
 
-    public RoborType getType() {
+    public RobotType getType() {
         return type;
     }
-    public void setType(RoborType type) {
+    public void setType(RobotType type) {
         this.type = type;
     }
 

@@ -1,6 +1,6 @@
 package restaurant.domain.enums;
 
-public enum RoborType {
+public enum RobotType {
     RECEPTION,
     ORDER_TAKING,
     KITCHEN,
