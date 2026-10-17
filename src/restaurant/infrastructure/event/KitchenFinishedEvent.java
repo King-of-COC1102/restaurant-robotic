@@ -3,8 +3,6 @@ import restaurant.domain.entity.Order;
 import restaurant.domain.entity.Robot;
 import restaurant.domain.enums.*;
 
-
-
 import java.util.List;
 import restaurant.infrastructure.repository.RobotRepository;
 public class KitchenFinishedEvent implements Event{

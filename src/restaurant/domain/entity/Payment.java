@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 public class Payment {
     private int paymentId;
     private int orderId;
-    private BigDecimal totalAmount;
-    private BigDecimal discountAmount;
-    private BigDecimal finalAmount;
+    private double totalAmount;
+    private double discountAmount;
+    private double finalAmount;
     private PaymentMethod method;
     private LocalDateTime paidAt;
     private PaymentStatus status;
 
-    public Payment(int paymentId, int orderId, BigDecimal totalAmount, BigDecimal discountAmount, BigDecimal finalAmount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
+    public Payment(int paymentId, int orderId, double totalAmount, double discountAmount, double finalAmount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.totalAmount = totalAmount;
@@ -35,24 +35,24 @@ public class Payment {
         return orderId;
     }
 
-    public BigDecimal getTotalAmount() {
+    public double getTotalAmount() {
         return totalAmount;
     }
-    public void setTotalAmount(BigDecimal totalAmount) {
+    public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public BigDecimal getDiscountAmount() {
+    public double getDiscountAmount() {
         return discountAmount;
     }
-    public void setDiscountAmount(BigDecimal discountAmount) {
+    public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
     }
 
-    public BigDecimal getFinalAmount() {
+    public double getFinalAmount() {
         return finalAmount;
     }
-    public void setFinalAmount(BigDecimal finalAmount) {
+    public void setFinalAmount(double finalAmount) {
         this.finalAmount = finalAmount;
     }
 

@@ -10,14 +10,7 @@ public class Dish
     private String description;
     private boolean isActive;
 
-    Dish(int dishId,
-         int categoryid,
-         String name,
-         double price,
-         int AvailableQuantity,
-         String description,
-         boolean isActive
-    )
+    public Dish(int dishId, int categoryid, String name, double price, int AvailableQuantity, String description, boolean isActive)
     {
         this.dishId = dishId;
         this.categoryid = categoryid;
