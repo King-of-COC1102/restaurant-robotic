@@ -1,5 +1,5 @@
 package restaurant.infrastructure.event;
-import java.math.BigDecimal;
+import  java.math.BigDecimal;
 import java.time.LocalDateTime;
 import restaurant.domain.entity.*;
 import restaurant.domain.enums.*;
@@ -12,12 +12,14 @@ public class PaymentEvent implements Event {
     private OrderRepository orderRepository;
     private TableRepository tableRepository;
     private PaymentRepository paymentRepository;
+    private Customer customer;
 
-    public PaymentEvent(Order order, PaymentRepository paymentRepository, OrderRepository orderRepository, TableRepository tableRepository) {
+    public PaymentEvent(Order order, PaymentRepository paymentRepository, OrderRepository orderRepository, TableRepository tableRepository, Customer customer) {
         this.order = order;
         this.paymentRepository = paymentRepository;
         this.orderRepository = orderRepository;
         this.tableRepository = tableRepository;
+        this.customer=customer;
     }
 
     public Order getOrder() {
@@ -40,6 +42,10 @@ public class PaymentEvent implements Event {
             }
             // 2. Tạo mã Payment mới và tạo đối tượng Payment
             double discountAmount = 0.0; // Khai báo số tiền giảm giá
+            if (customer != null && customer.getType() == CustomerType.VIP) {
+                discountAmount = totalAmount * 0.10; // Giảm 10% cho khách VIP
+                System.out.println("=> Khách hàng VIP [" + customer.getName() + "] được ưu đãi giảm 10%: -" + (long)discountAmount + " VNĐ");
+            }
             double finalAmount = totalAmount - discountAmount; // Khai báo số tiền thực trả
             int newPaymentId = paymentRepository.findAll().size() + 1;
             Payment payment1 = new Payment(
@@ -48,7 +54,7 @@ public class PaymentEvent implements Event {
                     totalAmount,
                     discountAmount,
                     finalAmount,
-                    PaymentMethod.CASH,
+                    PaymentMethod.CASH, //Phương thức mặt định là trả tiền mặt
                     LocalDateTime.now(),
                     PaymentStatus.SUCCESS
             );

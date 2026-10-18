@@ -84,51 +84,53 @@ public class SampleData {
         System.out.println("========== BÁO CÁO 15 CÂU TRUY VẤN (JAVA LAMBDAS) ==========\n");
 
         // STT 1: Lọc danh sách các bàn đang trống (EMPTY)
-        System.out.println("[STT 1] Bàn trống sẵn sàng đón khách (EMPTY):");
-        tables.stream()
+        System.out.println("🍽️[STT 1] Bàn trống sẵn sàng đón khách (EMPTY):");
+        tables.stream() //dòng chảy dữ liệu
                 .filter(t -> t.getStatus() == TableStatus.EMPTY)
                 .forEach(t -> System.out.println(" - Bàn ID: " + t.getId() + " (Sức chứa: " + t.getCapacity() + " người)"));
 
         // STT 2: Lọc các bàn đã được khách đặt trước (RESERVED) nhưng chưa đến
-        System.out.println("\n[STT 2] Danh sách các bàn đang đặt trước (RESERVED):");
+        System.out.println("\n🍽️[STT 2] Danh sách các bàn đang đặt trước (RESERVED):");
         tables.stream()
                 .filter(t -> t.getStatus() == TableStatus.RESERVED)
                 .forEach(t -> System.out.println(" - Bàn ID: " + t.getId() + " đang giữ chỗ"));
 
         // STT 3: Tìm các món ăn hiện tại đã HẾT HÀNG
-        System.out.println("\n[STT 3] Các món ăn hiện tại đã hết hàng:");
+        System.out.println("\n🍽️[STT 3] Các món ăn hiện tại đã hết hàng:");
         dishes.stream()
-                .filter(d -> d.getAvailableQuantity() <= 0 || !d.isActive())
+                .filter(d -> d.getAvailableQuantity() <= 0 || !d.isActive()) //Trả về True hoặc False
                 .forEach(d -> System.out.println(" - Món: " + d.getName() + " [HẾT HÀNG]"));
 
         // STT 4: Xem toàn bộ danh sách các món do các thành viên trong bàn số 2 gọi
-        System.out.println("\n[STT 4] Chi tiết các món được gọi tại Bàn số 2:");
+        System.out.println("\n🍽️[STT 4] Chi tiết các món được gọi tại Bàn số 2:");
         orders.stream()
                 .filter(o -> o.getTableId() == 2)
                 .flatMap(o -> o.getItems().stream())
+                //Trải phằng các DS lồng nhau thành 1 luồng (gom các đối tượng OrderItem nằm bên trong danh sách các Order lại với nhau)
                 .forEach(item -> System.out.println(" - Món ID: " + item.getDishId() + " | SL: " + item.getQuantity() + " | Ghi chú: " + item.getNote()));
 
         // STT 5: Tính tổng số lượng món ăn nhóm khách bàn số 2 đã gọi
         double totalItemsTable2 = orders.stream()
                 .filter(o -> o.getTableId() == 2)
                 .flatMap(o -> o.getItems().stream())
-                .mapToDouble(OrderItem::getQuantity)
-                .sum();
-        System.out.println("\n[STT 5] Tổng số lượng món nhóm bàn số 2 đã gọi: " + totalItemsTable2);
+                .mapToDouble(OrderItem::getQuantity).sum(); //Ánh xạ từng phần tử thành kiểu số thực Double
+
+        System.out.println("\n🍽️[STT 5] Tổng số lượng món nhóm bàn số 2 đã gọi: " + totalItemsTable2);
 
         // STT 6: Kiểm tra xem có Robot phục vụ (SERVING) nào đang rảnh không
         boolean hasAvailableServingRobot = robots.stream()
                 .anyMatch(r -> r.getType() == RobotType.SERVING && r.getStatus() == RobotStatus.AVAILABLE);
-        System.out.println("\n[STT 6] Có Robot phục vụ đang rảnh không? -> " + (hasAvailableServingRobot ? "Có" : "Không (Tất cả đang bận)"));
+                //anyMatch trả giá trị T/F, xem có Ít nhất 1 thỏa ĐK không
+        System.out.println("\n🍽️[STT 6] Có Robot phục vụ đang rảnh không? -> " + (hasAvailableServingRobot ? "Có" : "Không (Tất cả đang bận)"));
 
         // STT 7: Lọc danh sách Robot đang bận (BUSY) hoặc pin yếu (< 20%)
-        System.out.println("\n[STT 7] Robot đang bận hoặc pin yếu:");
+        System.out.println("\n🍽️[STT 7] Robot đang bận hoặc pin yếu:");
         robots.stream()
                 .filter(r -> r.getStatus() == RobotStatus.BUSY || r.getBatteryLevel() < 20)
                 .forEach(r -> System.out.println(" - " + r.getName() + " (Trạng thái: " + r.getStatus() + ", Pin: " + r.getBatteryLevel() + "%)"));
 
         // STT 8: Tìm các đơn hàng bị HỦY (CANCELLED)
-        System.out.println("\n[STT 8] Đơn hàng bị hủy:");
+        System.out.println("\n🍽️[STT 8] Đơn hàng bị hủy:");
         orders.stream()
                 .filter(o -> o.getStatus() == OrderStatus.CANCELLED)
                 .forEach(o -> {
@@ -137,7 +139,7 @@ public class SampleData {
                 });
 
         // STT 9: Tìm các đơn hàng đã nấu xong đang đợi phục vụ (READY_TO_BRING)
-        System.out.println("\n[STT 9] Đơn hàng nấu xong đang đợi phục vụ (READY_TO_BRING):");
+        System.out.println("\n🍽️[STT 9] Đơn hàng nấu xong đang đợi phục vụ (READY_TO_BRING):");
         orders.stream()
                 .filter(o -> o.getStatus() == OrderStatus.READY_TO_BRING)
                 .forEach(o -> System.out.println(" - Đơn ID: " + o.getOrderId() + " tại Bàn " + o.getTableId()));
@@ -146,16 +148,16 @@ public class SampleData {
         long preparingCount = orders.stream()
                 .filter(o -> o.getStatus() == OrderStatus.PREPARING)
                 .count();
-        System.out.println("\n[STT 10] Số lượng đơn hàng đang nấu trong bếp: " + preparingCount);
+        System.out.println("\n🍽️[STT 10] Số lượng đơn hàng đang nấu trong bếp: " + preparingCount);
 
         // STT 11: Lọc danh sách khách hàng VIP
-        System.out.println("\n[STT 11] Danh sách khách hàng VIP:");
+        System.out.println("\n🍽️[STT 11] Danh sách khách hàng VIP:");
         customers.stream()
                 .filter(c -> c.getType() == CustomerType.VIP)
                 .forEach(c -> System.out.println(" - " + c.getName() + " (SĐT: " + c.getPhoneNumber() + ")"));
 
         // STT 12: Tìm các đơn hàng đã hoàn tất thanh toán (COMPLETED)
-        System.out.println("\n[STT 12] Đơn hàng đã hoàn tất thanh toán (COMPLETED):");
+        System.out.println("\n🍽️[STT 12] Đơn hàng đã hoàn tất thanh toán (COMPLETED):");
         orders.stream()
                 .filter(o -> o.getStatus() == OrderStatus.COMPLETED)
                 .forEach(o -> System.out.println(" - Đơn ID: " + o.getOrderId() + " bàn " + o.getTableId()));
@@ -164,10 +166,10 @@ public class SampleData {
         long inUseTableCount = tables.stream()
                 .filter(t -> t.getStatus() == TableStatus.IN_USE)
                 .count();
-        System.out.println("\n[STT 13] Tổng số bàn đang phục vụ khách (IN_USE): " + inUseTableCount);
+        System.out.println("\n🍽️[STT 13] Tổng số bàn đang phục vụ khách (IN_USE): " + inUseTableCount);
 
         // STT 14: Lấy danh sách Robot nhận order (ORDER_TAKING) đang sẵn sàng
-        System.out.println("\n[STT 14] Robot nhận order đang sẵn sàng:");
+        System.out.println("\n🍽️[STT 14] Robot nhận order đang sẵn sàng:");
         robots.stream()
                 .filter(r -> r.getType() == RobotType.ORDER_TAKING && r.getStatus() == RobotStatus.AVAILABLE)
                 .forEach(r -> System.out.println(" - " + r.getName() + " (Pin: " + r.getBatteryLevel() + "%)"));
@@ -178,6 +180,6 @@ public class SampleData {
                 .flatMap(o -> o.getItems().stream())
                 .mapToDouble(item -> item.getQuantity() * item.getUnitPriceAtOrder())
                 .sum();
-        System.out.println("\n[STT 15] Tổng tiền tạm tính của Bàn 2: " + (long)table2TotalBill + " VNĐ");
+        System.out.println("\n🍽️[STT 15] Tổng tiền tạm tính của Bàn 2: " + (long)table2TotalBill + " VNĐ");
     }
 }

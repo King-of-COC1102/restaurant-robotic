@@ -28,7 +28,7 @@ public class KitchenFinishedEvent implements Event{
             else {
                 Robot kitchenRobot = kitchenRobots.get(0);
                 System.out.println("Robot ["+kitchenRobot.getRobotId()+"] "+kitchenRobot.getName()+" đang nấu ăn cho bạn");
-                kitchenRobot.setStatus(RobotStatus.BUSY);
+                kitchenRobot.setStatus(RobotStatus.BUSY); //Chuyển Status
                 order.setOrderStatus(OrderStatus.PREPARING);
                 // Giả lập quá trình nhà bếp đang nấu...
                 System.out.println("... Đang nấu các món ăn cho khách ...");
