@@ -53,6 +53,9 @@ public class DiscountService {
 
         for (Payment p : paymentRepository.findDiscount()) {
             Discount d = discountRepository.findById(p.getDiscountId());
+            if (d == null) {
+                continue;   // mã giảm giá đã bị xóa
+            }
 
             String type;
             String value;
@@ -60,24 +63,25 @@ public class DiscountService {
 
             if (d.getType() == DiscountType.PERCENTAGE) {
                 type = "Phần trăm";
-                value = d.getValue() + "%";
-                actualRate = d.getValue() + "%";
+                value = String.format("%.0f%%", d.getValue());
+                actualRate = value;
             } else {
                 type = "Cố định";
-                value = d.getValue() + "đ";
-                actualRate = p.getDiscountAmount()
-                        .multiply(BigDecimal.valueOf(100))
-                        .divide(p.getTotalAmount(), 1, RoundingMode.HALF_UP) + "%";
+                value = String.format("%.0fđ", d.getValue());
+                double rate = (p.getTotalAmount() == 0)
+                        ? 0
+                        : p.getDiscountAmount() * 100 / p.getTotalAmount();
+                actualRate = String.format("%.1f%%", rate);
             }
 
-            System.out.printf("%-8d %-12s %-12s %-12s %-12s %-10s %s%n",
+            System.out.printf("%-8d %-12s %-12s %-12s %-12.0f %-10s %.0f%n",
                     p.getOrderId(),
                     d.getCode(),
                     type,
                     value,
-                    p.getDiscountAmount().toPlainString(),
+                    p.getDiscountAmount(),
                     actualRate,
-                    p.getTotalAmount().toPlainString());
+                    p.getTotalAmount());
         }
     }
 }

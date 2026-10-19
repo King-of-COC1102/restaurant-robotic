@@ -83,15 +83,15 @@ public class RestaurantAnalyticsService {
             List<Order> orders = orderRepository.findByCustomerId(c.getCustomerId());   // phiếu của khách này
 
             if (orders.size() >= 2) {                                             // lọc: khách quay lại
-                BigDecimal spent = BigDecimal.ZERO;
+                double spent = 0;
                 for (Order o : orders) {
                     Payment p = paymentRepository.findByOrderId(o.getOrderId());
                     if (p != null && p.getStatus() == PaymentStatus.SUCCESS) {
-                        spent = spent.add(p.getFinalAmount());                    // cộng tiền đã trả
+                        spent += p.getFinalAmount();                              // cộng tiền đã trả
                     }
                 }
-                System.out.printf("%-5d %-20s %-10s %-8d %s%n",
-                        c.getCustomerId(), c.getName(), c.getType(), orders.size(), spent.toPlainString());
+                System.out.printf("%-5d %-20s %-10s %-8d %.0f%n",
+                        c.getCustomerId(), c.getName(), c.getType(), orders.size(), spent);
                 found = true;
             }
         }
@@ -114,14 +114,14 @@ public class RestaurantAnalyticsService {
         System.out.println("-".repeat(35));
 
         for (Table t : tables) {
-            BigDecimal revenue = BigDecimal.ZERO;
+            double revenue = 0;
             for (Order o : orderRepository.findByTableId(t.getId())) {
                 Payment p = paymentRepository.findByOrderId(o.getOrderId());
                 if (p != null && p.getStatus() == PaymentStatus.SUCCESS) {
-                    revenue = revenue.add(p.getFinalAmount());
+                    revenue += p.getFinalAmount();
                 }
             }
-            System.out.printf("%-8d %-10d %s%n", t.getId(), t.getCapacity(), revenue.toPlainString());
+            System.out.printf("%-8d %-10d %.0f%n", t.getId(), t.getCapacity(), revenue);
         }
     }
 
@@ -166,17 +166,18 @@ public class RestaurantAnalyticsService {
             return;
         }
         System.out.println("===== TOP " + n + " PHIẾU THANH TOÁN CAO NHẤT =====");
-        System.out.printf("%-6s %-8s %-10s %-15s %s%n", "Mã", "Order", "Phương thức", "Thành tiền", "Thời gian");
+        System.out.printf("%-6s %-8s %-12s %-15s %s%n", "Mã", "Order", "Phương thức", "Thành tiền", "Thời gian");
         System.out.println("-".repeat(65));
 
         payments.forEach(p ->
-                System.out.printf("%-6d %-8d %-10s %-15s %s%n",
+                System.out.printf("%-6d %-8d %-12s %-15.0f %s%n",
                         p.getPaymentId(),
                         p.getOrderId(),
                         p.getMethod(),
-                        p.getFinalAmount().toPlainString(),
+                        p.getFinalAmount(),
                         p.getPaidAt()));
     }
+
     // Câu 26: Số khách và doanh thu theo loại khách
     public void printCustomerAndRevenueByType() {
         System.out.println("===== SỐ KHÁCH VÀ DOANH THU THEO LOẠI KHÁCH =====");
@@ -185,18 +186,18 @@ public class RestaurantAnalyticsService {
 
         for (CustomerType type : CustomerType.values()) {
             List<Customer> customers = customerRepository.findByType(type);
-            BigDecimal revenue = BigDecimal.ZERO;
+            double revenue = 0;
 
             for (Customer c : customers) {
                 for (Order o : orderRepository.findByCustomerId(c.getCustomerId())) {
                     Payment p = paymentRepository.findByOrderId(o.getOrderId());
-                    if (p.getStatus() == PaymentStatus.SUCCESS) {
-                        revenue = revenue.add(p.getFinalAmount());
+                    if (p != null && p.getStatus() == PaymentStatus.SUCCESS) {
+                        revenue += p.getFinalAmount();
                     }
                 }
             }
 
-            System.out.printf("%-12s %-10d %s%n", type, customers.size(), revenue.toPlainString());
+            System.out.printf("%-12s %-10d %.0f%n", type, customers.size(), revenue);
         }
     }
 
@@ -237,7 +238,7 @@ public class RestaurantAnalyticsService {
 
     // Câu 30: Phiếu thanh toán có giá trị trên mức trung bình
     public void printPaymentsAboveAverage() {
-        BigDecimal avg = paymentRepository.averagePaidAmount();
+        double avg = paymentRepository.averagePaidAmount();
         List<Payment> payments = paymentRepository.paymentsAboveAverage();
 
         if (payments.isEmpty()) {
@@ -245,15 +246,15 @@ public class RestaurantAnalyticsService {
             return;
         }
         System.out.println("===== PHIẾU THANH TOÁN TRÊN MỨC TRUNG BÌNH =====");
-        System.out.println("Mức trung bình: " + avg.toPlainString());
+        System.out.printf("Mức trung bình: %.0f%n", avg);
         System.out.printf("%-6s %-8s %-12s %s%n", "Mã", "Order", "Phương thức", "Thành tiền");
         System.out.println("-".repeat(45));
 
         payments.forEach(p ->
-                System.out.printf("%-6d %-8d %-12s %s%n",
+                System.out.printf("%-6d %-8d %-12s %.0f%n",
                         p.getPaymentId(),
                         p.getOrderId(),
                         p.getMethod(),
-                        p.getFinalAmount().toPlainString()));
+                        p.getFinalAmount()));
     }
 }
