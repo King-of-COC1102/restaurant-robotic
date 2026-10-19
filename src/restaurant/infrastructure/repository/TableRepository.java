@@ -1,11 +1,10 @@
 package restaurant.infrastructure.repository;
 
-import restaurant.app.SampleData;
 import restaurant.domain.entity.*;
 import restaurant.domain.enums.TableStatus;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class TableRepository extends Repository<Table, Integer>{
     public TableRepository(List<Table> list) {

@@ -1,8 +1,6 @@
 package restaurant.infrastructure.repository;
 
-import restaurant.app.SampleData;
-import restaurant.domain.entity.Category;
-import restaurant.domain.entity.Discount;
+import restaurant.domain.entity.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

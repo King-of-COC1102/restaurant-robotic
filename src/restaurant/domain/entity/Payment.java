@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 public class Payment {
     private int paymentId;
     private int orderId;
+    private int discountId;   // 0 hoặc -1 nếu không dùng mã
+
     private BigDecimal totalAmount;
     private BigDecimal discountAmount;
     private BigDecimal finalAmount;
@@ -16,9 +18,10 @@ public class Payment {
     private LocalDateTime paidAt;
     private PaymentStatus status;
 
-    public Payment(int paymentId, int orderId, BigDecimal totalAmount, BigDecimal discountAmount, BigDecimal finalAmount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
+    public Payment(int paymentId, int orderId,int discountId, BigDecimal totalAmount, BigDecimal discountAmount, BigDecimal finalAmount, PaymentMethod method, LocalDateTime paidAt, PaymentStatus status) {
         this.paymentId = paymentId;
         this.orderId = orderId;
+        this.discountId = discountId;
         this.totalAmount = totalAmount;
         this.discountAmount = discountAmount;
         this.finalAmount = finalAmount;
@@ -34,6 +37,8 @@ public class Payment {
     public int getOrderId() {
         return orderId;
     }
+
+    public int getDiscountId() { return discountId; }
 
     public BigDecimal getTotalAmount() {
         return totalAmount;

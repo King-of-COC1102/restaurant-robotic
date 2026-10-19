@@ -5,12 +5,12 @@ public class OrderItem
     private int orderItemId;
     private int orderId;
     private int dishId;
-    private Double quantity;
+    private int quantity;
     private double unitPriceAtOrder;
     private String note;
     private boolean isCancelled;   // thay cho Status
 
-    public OrderItem(int orderItemId, int orderId, int dishId, Double quantity, double unitPriceAtOrder, String note, boolean isCancelled) {
+    public OrderItem(int orderItemId, int orderId, int dishId, int quantity, double unitPriceAtOrder, String note, boolean isCancelled) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.dishId = dishId;
@@ -32,10 +32,10 @@ public class OrderItem
         return dishId;
     }
 
-    public Double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
-    public void setQuantity(Double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

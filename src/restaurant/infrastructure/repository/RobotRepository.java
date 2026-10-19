@@ -21,6 +21,11 @@ public class RobotRepository extends Repository<Robot, Integer>{
         }
         return count;
     }
+    public List<Robot> findByType(RobotType type)
+    {
+        return findBy(r -> r.getType() == type);
+    }
+
     //Đếm xem có bao nhiêu con Robot rảnh(AVAILABLE) của 1 loại
     public int countAvailableRobotType(RobotType type) {
         int count=0;
@@ -32,8 +37,8 @@ public class RobotRepository extends Repository<Robot, Integer>{
         return count;
     }
 
+    // tìm robot có trạng thái available
     public List<Robot> findAvailableRobot (RobotType type, RobotStatus status) {
-        // tìm robot có trạng thái available
         return findBy(r -> r.getType() == type && r.getStatus() == status);
     }
 }

@@ -16,4 +16,17 @@ public class DishRepository extends Repository<Dish, Integer>{
         return findById(id, Dish::getId);
     }
 
+    public List<Dish> findByCategoryId(int id)
+    {
+        return findBy(d -> d.getCategoryid() == id);
+    }
+
+
+
+    // câu 23: Món đang kinh doanh sắp hết hàng
+    public List<Dish> lowQty()
+    {
+        return findBy(d -> d.isActive() && d.getAvailableQuantity() < 10);
+    }
+
 }

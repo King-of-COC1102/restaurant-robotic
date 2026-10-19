@@ -49,7 +49,7 @@ public class OrderCreatedEvent implements Event{
                     //Duyệt từng món khách gọi
                     for (OrderItem item: order.getItems()) {
                         Dish dish= dishRepository.findById(item.getDishId());
-                        if(dish == null || !dish.isActive() || dish.getAvailableQuantity() == 0 ) {
+                        if(!dish.isActive() || dish.getAvailableQuantity() == 0 ) {
                             //SET TẠM THÔI
                             isAllDishesAvailable=false;
                             System.out.println("->Món ăn ["+item.getDishId()+"] "+dish.getName()+" hiện tại đã HẾT!");

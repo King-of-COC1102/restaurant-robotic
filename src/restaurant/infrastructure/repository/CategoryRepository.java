@@ -1,6 +1,5 @@
 package restaurant.infrastructure.repository;
 
-import restaurant.app.SampleData;
 import restaurant.domain.entity.Category;
 
 import java.util.List;

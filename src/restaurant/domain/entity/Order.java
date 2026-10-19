@@ -30,6 +30,10 @@ public class Order {
         return tableId;
     }
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
     public List<OrderItem> getItems() {
         return items;
     }

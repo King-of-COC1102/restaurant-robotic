@@ -1,7 +1,5 @@
 package restaurant.infrastructure.repository;
 
-import restaurant.domain.entity.Discount;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
