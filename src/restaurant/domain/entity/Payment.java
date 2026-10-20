@@ -2,8 +2,6 @@ package restaurant.domain.entity;
 
 import restaurant.domain.enums.PaymentMethod;
 import restaurant.domain.enums.PaymentStatus;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Payment {
