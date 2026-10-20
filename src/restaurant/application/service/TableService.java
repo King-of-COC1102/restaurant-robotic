@@ -8,7 +8,7 @@ import java.util.Map;
 public class TableService {
     private final TableRepository tableRepository;
     private final OrderRepository orderRepository;
-    TableService(TableRepository tableRepository, OrderRepository orderRepository)
+    public TableService(TableRepository tableRepository, OrderRepository orderRepository)
     {
         this.tableRepository = tableRepository;
         this.orderRepository = orderRepository;

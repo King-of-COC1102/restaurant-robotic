@@ -18,7 +18,7 @@ public class RestaurantAnalyticsService {
     private final RobotRepository robotRepository;
 
 
-    RestaurantAnalyticsService(OrderRepository orderRepository,
+    public RestaurantAnalyticsService(OrderRepository orderRepository,
                                DishRepository dishRepository,
                                TableRepository tableRepository,
                                PaymentRepository paymentRepository,

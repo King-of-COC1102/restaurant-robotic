@@ -8,7 +8,7 @@ import java.util.List;
 public class MenuService {
     private final DishRepository dishRepository;
     private final CategoryRepository categoryRepository;
-    MenuService(DishRepository dishRepository, CategoryRepository categoryRepository)
+    public MenuService(DishRepository dishRepository, CategoryRepository categoryRepository)
     {
         this.dishRepository = dishRepository;
         this.categoryRepository = categoryRepository;

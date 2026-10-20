@@ -32,7 +32,7 @@ public class PaymentEvent implements Event {
         if (order != null && paymentRepository != null && orderRepository != null && tableRepository != null) {
             System.out.println("Khách đã ăn xong");
             System.out.println("Khách hàng tại bàn ID [" + order.getTableId() + "] yêu cầu thanh toán hóa đơn.");
-            Payment payment = paymentRepository.findById(order.getOrderId());
+            Payment payment = paymentRepository.findById(order.getOrderId(), Payment::getPaymentId);
             // 1. Tính tổng tiền từ danh sách các món trong Order
             double totalAmount = 0.0;
             if (order.getItems() != null) {
@@ -51,6 +51,7 @@ public class PaymentEvent implements Event {
             Payment payment1 = new Payment(
                     newPaymentId,
                     order.getOrderId(),
+                    0,
                     totalAmount,
                     discountAmount,
                     finalAmount,
@@ -64,7 +65,7 @@ public class PaymentEvent implements Event {
             // 4. Cập nhật trạng thái đơn hàng thành COMPLETED
             order.setOrderStatus(OrderStatus.COMPLETED);
             System.out.println("---- Thanh toán đơn ID [" + payment1.getOrderId() + "] bằng hình thức " + payment1.getMethod() + " ----");
-            System.out.println("=> Số tiền: " + (long)totalAmount + " VNĐ");
+            System.out.println("=> Số tiền: " + (long)finalAmount + " VNĐ");
             System.out.println("=> Thanh toán thành công!!!");
 
             // 5. Tìm bàn ăn tương ứng để giải phóng

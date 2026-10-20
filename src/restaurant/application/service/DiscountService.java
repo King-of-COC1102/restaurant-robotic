@@ -12,7 +12,7 @@ import java.util.List;
 public class DiscountService {
     private final DiscountRepository discountRepository;
     private final PaymentRepository paymentRepository;
-    DiscountService(DiscountRepository discountRepo, PaymentRepository paymentRepository)
+    public DiscountService(DiscountRepository discountRepo, PaymentRepository paymentRepository)
     {
         this.discountRepository = discountRepo;
         this.paymentRepository = paymentRepository;

@@ -9,7 +9,7 @@ public class OrderService {
     private final DishRepository dishRepository;
     private final DiscountRepository discountRepository;
 
-    OrderService(OrderRepository orderRepository,
+    public OrderService(OrderRepository orderRepository,
                  DishRepository dishRepository,
                  DiscountRepository discountRepository)
     {
