@@ -5,7 +5,7 @@ import restaurant.domain.enums.*;
 
 
 public class OrderTakingRobot extends Robot {
-    OrderTakingRobot(int robotId, String name, RobotType type, RobotStatus status, int batteryLevel, int quantity)
+    public OrderTakingRobot(int robotId, String name, RobotType type, RobotStatus status, int batteryLevel, int quantity)
     {
         super(robotId, name, type, status, batteryLevel, quantity);
     }

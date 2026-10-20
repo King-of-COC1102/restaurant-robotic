@@ -11,12 +11,7 @@ public class OrderCreatedEvent implements Event{
     private RobotRepository robotRepository;
     private DishRepository dishRepository;
     private Customer customer;
-    public OrderCreatedEvent(Order order,
-                             OrderRepository orderRepository,
-                             RobotRepository robotRepository,
-                             DishRepository dishRepository,
-                             Customer customer
-                            )
+    public OrderCreatedEvent(Order order, OrderRepository orderRepository, RobotRepository robotRepository, DishRepository dishRepository, Customer customer)
     {
         this.order=order;
         this.orderRepository=orderRepository;
