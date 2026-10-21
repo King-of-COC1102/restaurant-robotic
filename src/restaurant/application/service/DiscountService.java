@@ -12,9 +12,9 @@ import java.util.List;
 public class DiscountService {
     private final DiscountRepository discountRepository;
     private final PaymentRepository paymentRepository;
-    public DiscountService(DiscountRepository discountRepo, PaymentRepository paymentRepository)
+    public DiscountService(DiscountRepository discountRepository, PaymentRepository paymentRepository)
     {
-        this.discountRepository = discountRepo;
+        this.discountRepository = discountRepository;
         this.paymentRepository = paymentRepository;
     }
 
@@ -43,9 +43,9 @@ public class DiscountService {
     // Câu 28: Phiếu có giảm giá
     public void printDiscountedPayments() {
         System.out.println("===== PHIẾU CÓ GIẢM GIÁ =====");
-        System.out.printf("%-8s %-12s %-12s %-12s %-12s %-10s %s%n",
-                "Order", "Mã giảm", "Loại", "Giá trị", "Tiền giảm", "Thực tế", "Tổng tiền");
-        System.out.println("-".repeat(90));
+        System.out.printf("%-8s %-12s %-12s %-12s %-12s %s%n",
+                "Order", "Mã giảm", "Loại", "Giá trị", "Tiền giảm", "Tổng tiền");
+        System.out.println("-".repeat(70));
 
         for (Payment p : paymentRepository.findDiscount()) {
             Discount d = discountRepository.findById(p.getDiscountId());
@@ -55,28 +55,21 @@ public class DiscountService {
 
             String type;
             String value;
-            String actualRate;
 
             if (d.getType() == DiscountType.PERCENTAGE) {
                 type = "Phần trăm";
                 value = String.format("%.0f%%", d.getValue());
-                actualRate = value;
             } else {
                 type = "Cố định";
                 value = String.format("%.0fđ", d.getValue());
-                double rate = (p.getTotalAmount() == 0)
-                        ? 0
-                        : p.getDiscountAmount() * 100 / p.getTotalAmount();
-                actualRate = String.format("%.1f%%", rate);
             }
 
-            System.out.printf("%-8d %-12s %-12s %-12s %-12.0f %-10s %.0f%n",
+            System.out.printf("%-8d %-12s %-12s %-12s %-12.0f %.0f%n",
                     p.getOrderId(),
                     d.getCode(),
                     type,
                     value,
                     p.getDiscountAmount(),
-                    actualRate,
                     p.getTotalAmount());
         }
     }

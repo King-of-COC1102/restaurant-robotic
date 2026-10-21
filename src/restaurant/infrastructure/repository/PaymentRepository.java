@@ -45,8 +45,7 @@ public class PaymentRepository extends Repository<Payment, Integer>{
     }
 
     // Câu 30: Phiếu thanh toán có giá trị trên mức trung bình
-    public List<Payment> paymentsAboveAverage() {
-        double avg = averagePaidAmount();
+    public List<Payment> paymentsAboveAverage(double avg) {
         return findBy(p -> p.getStatus() == PaymentStatus.SUCCESS).stream()
                 .filter(p -> p.getFinalAmount() > avg)
                 .toList();

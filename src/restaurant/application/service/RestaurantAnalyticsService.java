@@ -239,7 +239,7 @@ public class RestaurantAnalyticsService {
     // Câu 30: Phiếu thanh toán có giá trị trên mức trung bình
     public void printPaymentsAboveAverage() {
         double avg = paymentRepository.averagePaidAmount();
-        List<Payment> payments = paymentRepository.paymentsAboveAverage();
+        List<Payment> payments = paymentRepository.paymentsAboveAverage(avg);
 
         if (payments.isEmpty()) {
             System.out.println("Không có phiếu thanh toán nào trên mức trung bình.");
@@ -247,11 +247,11 @@ public class RestaurantAnalyticsService {
         }
         System.out.println("===== PHIẾU THANH TOÁN TRÊN MỨC TRUNG BÌNH =====");
         System.out.printf("Mức trung bình: %.0f%n", avg);
-        System.out.printf("%-6s %-8s %-12s %s%n", "Mã", "Order", "Phương thức", "Thành tiền");
+        System.out.printf("%-6s %-8s %-14s %s%n", "Mã", "Order", "Phương thức", "Thành tiền");
         System.out.println("-".repeat(45));
 
         payments.forEach(p ->
-                System.out.printf("%-6d %-8d %-12s %.0f%n",
+                System.out.printf("%-6d %-8d %-14s %.0f%n",
                         p.getPaymentId(),
                         p.getOrderId(),
                         p.getMethod(),

@@ -54,6 +54,7 @@ public class OrderRepository extends Repository<Order, Integer>{
                 );
     }
 
+    // Câu 16 và Top N món bán chạy nhất (dishId -> số phần), sắp xếp giảm dần
     // Câu 22: Tổng số lượng bán của từng món trong các order hoàn thành
     public Map<Integer, Integer> totalDishSold() {
         return list.stream()
