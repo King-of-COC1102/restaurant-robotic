@@ -15,6 +15,12 @@ public class Repository <T,DT>{
     {
         list.add(item);
     }
+    // Xóa item ra khổi list chứa các T
+    public void remove(T item)
+    {
+        list.remove(item);
+    }
+
     // tìm item thông qua id của nó
     public T findById(DT id, Function<T,DT> getId)
     {

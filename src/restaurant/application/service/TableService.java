@@ -1,5 +1,6 @@
 package restaurant.application.service;
 
+import restaurant.domain.entity.Discount;
 import restaurant.domain.entity.Table;
 import restaurant.infrastructure.repository.*;
 
@@ -13,6 +14,7 @@ public class TableService {
         this.tableRepository = tableRepository;
         this.orderRepository = orderRepository;
     }
+
     // cau 21: đếm số order ở mỗi table
     public void printcountOrderInEachTable()
     {

@@ -18,10 +18,6 @@ public class DiscountService {
         this.paymentRepository = paymentRepository;
     }
 
-    public void addDiscount(Discount d){
-        discountRepository.add(d);
-    }
-
     public void activate(int id){
         discountRepository.findById(id).setActive(true);
     }

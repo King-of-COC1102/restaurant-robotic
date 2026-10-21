@@ -1,8 +1,7 @@
 package restaurant.application.service;
 
-import restaurant.infrastructure.repository.DiscountRepository;
-import restaurant.infrastructure.repository.DishRepository;
-import restaurant.infrastructure.repository.OrderRepository;
+import restaurant.domain.entity.Order;
+import restaurant.infrastructure.repository.*;
 
 public class OrderService {
     private final OrderRepository orderRepository;
@@ -17,5 +16,4 @@ public class OrderService {
         this.dishRepository = dishRepository;
         this.discountRepository = discountRepository;
     }
-
 }
